@@ -1,9 +1,50 @@
+.wrap {
+    -webkit-box-shadow: 0px -15px 25px -22px rgba(255, 247, 0, 0.57) inset;
+    -moz-box-shadow: 0px -15px 25px -22px rgba(255, 247, 0, 0.57) inset;
+    box-shadow: 0px -15px 25px -22px rgba(255, 247, 0, 0.57) inset;
+}
+
 .card {
+    display: flex;
     height: 300px;
     width: auto;
     margin: 10px;
-    border: 2px solid rgba(249, 198, 0, 0.6);
-    -webkit-box-shadow: -5px 5px 8px -3px rgba(249, 198, 0, 0.6);
-    -moz-box-shadow: -5px 5px 8px -3px rgba(249, 198, 0, 0.6);
-    box-shadow: -5px 5px 8px -3px rgba(249, 198, 0, 0.6);
+}
+.container {
+    height: 99%;
+    width: 20%;
+}
+.img-container {
+
+    height: 80%;
+    width: 99%;
+
+}
+.price-container {
+    display: flex;
+
+    height: 20%;
+    width: 99%;
+}
+
+.rating {
+    color: orangered;
+    font-size: 25px;
+    flex: 0.6;
+}
+.price {
+    font-size: 25px;
+    color: orangered;
+    flex: 0.4;
+}
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.description {
+    height: 99%;
+    width: 80%;
+  
 }

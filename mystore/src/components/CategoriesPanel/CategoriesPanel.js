@@ -3,6 +3,7 @@ const CategoriesPanel = () => {
 
     return (
         <div className={styles['categories-container']}>
+            <button>All</button>
             <button>Electronics</button>
             <button>Men's clothing</button>
             <button>Women's clothing</button>

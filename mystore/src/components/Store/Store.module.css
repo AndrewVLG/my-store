@@ -16,6 +16,12 @@
 
 .products-container {
     flex: 1;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid orange;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     height: fit-content;
 
     margin: 2px;
