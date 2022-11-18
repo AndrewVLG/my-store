@@ -1,0 +1,23 @@
+.body {
+
+    min-height: 100vh;
+    max-height: fit-content;
+    width: 100vw;
+    background-color: orange;
+}
+
+.main {
+    display: flex;
+    min-height: 86vh;
+    height: fit-content;
+    width: auto;
+}
+
+
+.products-container {
+    flex: 1;
+    height: fit-content;
+
+    margin: 2px;
+
+}

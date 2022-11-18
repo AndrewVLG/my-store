@@ -1,0 +1,62 @@
+.header {
+    display: flex;
+    height: 14vh;
+    width: auto;
+    background-color: orange;
+    -webkit-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+    -moz-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+    box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 20%;
+}
+.btn-container button {
+    height: 30%;
+    width: 80%;
+    margin: 5px;
+    margin-left: 10%;
+    background-color: orange;
+    border: 1px solid rgb(255, 187, 0);
+    font-size: 23px;
+    color: white;
+    -webkit-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+    -moz-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+    box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+}
+
+.search-container {
+    margin-left: 3px;
+    height: auto;
+    width: 50%;
+ 
+}
+.search-container label {
+    font-size: 23px;
+    margin-left: 12%;
+    color: white;
+}
+.search-container input {
+    margin-top: 5%;
+    width: 70%;
+    border: 3px solid rgba(249, 198, 0, 0.6);
+}
+
+.logo-container {
+    margin-left: 3px;
+    height: auto;
+    width: 30%;
+
+}
+.logo-container h1 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 50px;
+    word-spacing: 2px;
+    font-weight: 700;
+    text-transform: capitalize;
+    text-align: center;
+    color: white;
+}
