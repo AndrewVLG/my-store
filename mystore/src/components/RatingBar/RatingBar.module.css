@@ -1,0 +1,16 @@
+.rating-bar {
+    display: flex;
+    justify-content: space-evenly;
+    height: 20px;
+    width: 100px;
+    background-color: white;
+}
+.mask {
+    overflow: hidden;
+    height: 22px;
+
+
+}
+.txt {
+    color: orange;
+}

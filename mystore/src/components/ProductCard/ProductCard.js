@@ -1,4 +1,5 @@
 import React from 'react';
+import RatingBar from '../RatingBar/RatingBar';
 import styles from './ProductCard.module.css';
 
 const ProductCard = (props) => {
@@ -12,13 +13,14 @@ const ProductCard = (props) => {
                         <img src={props.url}/>
                     </div>
                     <div className={styles['price-container']}>
-                        <span className={styles.rating}>{`rating: ${props.rating}`}</span>
+                        <button>add to cart</button>
                         <span className={styles.price}>{`price: ${props.price}$`}</span>
                     </div>
                 </div>
 
                 <div className={styles.description}>
                     <p>{props.description}</p>
+                    <RatingBar rating={props.rating}/>
                 </div>
             </div>
         </div>

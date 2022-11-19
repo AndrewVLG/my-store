@@ -1,0 +1,16 @@
+
+.wrap {
+    padding: 5px;
+    width: 20%; 
+
+    background-color: orange;
+}
+
+
+.wrap input {
+    border: 3px solid yellow;
+}
+
+.wrap label {
+    color: white;
+}

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CategoriesPanel from '../CategoriesPanel/CategoriesPanel';
 import Header from '../Header/Header';
 import ProductCard from '../ProductCard/ProductCard';
 import styles from './Store.module.css';
 const Store = () => {
+    const [catFlag, setCatFlag] = useState(false);
+    
+    const showCategories = () => {
+        setCatFlag(prev => !prev);
+    }
+
+
     const products = [
         {
             id:  "6360fe17fb4e6ade99bc6071",
@@ -32,7 +40,8 @@ const Store = () => {
             rating: 3.3,
             title: "WD 2TB Elements Portable External Hard Drive - USB 3.0 "
           }
-     ]
+     ];
+     
      const items = products.map(product => {
         return <ProductCard 
         key={product.id}
@@ -46,9 +55,9 @@ const Store = () => {
      })
     return(
         <div className={styles.body}>
-            <Header />
+            <Header onShowCategoriesHandler={showCategories}/>
             <div className={styles.main}>
-                <CategoriesPanel />
+                {catFlag && <CategoriesPanel />}
                 
                 <div className={styles['products-container']}>
                     {items}

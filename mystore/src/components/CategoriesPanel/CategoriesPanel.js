@@ -1,6 +1,6 @@
 import styles from './CategoriesPanel.module.css'
 const CategoriesPanel = () => {
-
+    
     return (
         <div className={styles['categories-container']}>
             <button>All</button>
@@ -8,6 +8,7 @@ const CategoriesPanel = () => {
             <button>Men's clothing</button>
             <button>Women's clothing</button>
             <button>Jewelry</button>
+            <button>Cart</button>
         </div>
     )
 }

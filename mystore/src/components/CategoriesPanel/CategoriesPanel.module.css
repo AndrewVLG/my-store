@@ -7,6 +7,17 @@
     background-color: orange;
     border: 2px solid yellow;
     border-radius: 10px;
+   
+    animation-name: show-categories;
+    animation-duration: 1s;
+}
+@keyframes show-categories {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
 
 }
 .categories-container button {
