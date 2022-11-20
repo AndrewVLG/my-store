@@ -21,6 +21,7 @@
 
 }
 .categories-container button {
+    cursor: pointer;
     height: 55px;
     width: 80%;
     margin: 5px;
