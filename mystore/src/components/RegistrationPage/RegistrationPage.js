@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from './RegistrationPage.module.css';
 
 
 const RegistrationPage = () => {
     const navigate = useNavigate();
+    const [errMessage, setErrMessage] = useState([]);
     const emailInput = useRef();
     const passwordInput = useRef();
     const confirmPasswordInput = useRef();
@@ -12,27 +13,59 @@ const RegistrationPage = () => {
     const firstNameInput = useRef();
     const lastNameInput = useRef();
     const reg = /@/;
-    const postUserData = (e) => {
+    console.log(errMessage)
+    const postUserData = async (e) => {
         e.preventDefault();
         if(!reg.test(emailInput.current.value)) {
-            console.log('Incorrect e-mail')
+            setErrMessage(['Incorrect e-mail']);
             return;
         }
         if(passwordInput.current.value.length < 6) {
-            console.log('The password must be at least 6 characters long')
+            setErrMessage(['The password must be at least 6 characters long']);
             return;
         }
         if(confirmPasswordInput.current.value !== passwordInput.current.value) {
-            console.log("Passwords don't match")
+            setErrMessage(["Passwords don't match"]);
             return;
         }
+        if(nickNameInput.current.value.length < 1) {
+            setErrMessage(['Nickname field cannot be empty']);
+            return;
+        };
+        try {
+            const res = await fetch('http://localhost:3030/registration',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailInput.current.value,
+                    password: passwordInput.current.value,
+                    nickName: nickNameInput.current.value,
+                    firstName: firstNameInput.current.value,
+                    lastNameInput: lastNameInput.current.value,
+                })
+            });
 
-        console.log('User created');
-        navigate('/')
+            const data = await res.json();
 
+            if(!res.ok) {
+                let errors = [];
+                data.forEach(error => {
+                    errors = [...errors, error.msg];
+                    setErrMessage(errors);
+                })
+                throw new Error('Error');
+            }
+            localStorage.setItem('token', data);
+            navigate('/');
+        } catch(e) {
+            console.log(e);
+        }
 
     }
-
+    const errors = errMessage.map(error => <p className={styles.error}>{error}</p>)
     return (
         <div className={styles.wrapper}>
             <h1>My-Store</h1>
@@ -71,6 +104,7 @@ const RegistrationPage = () => {
                 ref={lastNameInput}
                 />
                 <button>Register</button>
+                {errors}
             </form>
         </div>
     )

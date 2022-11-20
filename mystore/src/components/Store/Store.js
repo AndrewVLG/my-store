@@ -9,6 +9,13 @@ const Store = () => {
     const [catFlag, setCatFlag] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
+        fetch('http://localhost:3030/authme', {
+            headers: {
+                authorization: localStorage.getItem('token')
+            }
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
         dispatch(fetchAllProducts())
     }, [])
     
