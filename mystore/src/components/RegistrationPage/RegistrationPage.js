@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import styles from './RegistrationPage.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMakeRegistration } from '../../reduxStore/authSlice';
 
 
 const RegistrationPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth)
     const [errMessage, setErrMessage] = useState([]);
     const emailInput = useRef();
     const passwordInput = useRef();
@@ -13,11 +17,11 @@ const RegistrationPage = () => {
     const firstNameInput = useRef();
     const lastNameInput = useRef();
     const reg = /@/;
-    console.log(errMessage)
+
     const postUserData = async (e) => {
         e.preventDefault();
         if(!reg.test(emailInput.current.value)) {
-            setErrMessage(['Incorrect e-mail']);
+            setErrMessage('Incorrect email format');
             return;
         }
         if(passwordInput.current.value.length < 6) {
@@ -29,43 +33,19 @@ const RegistrationPage = () => {
             return;
         }
         if(nickNameInput.current.value.length < 1) {
-            setErrMessage(['Nickname field cannot be empty']);
+            setErrMessage('Nickname field cannot be empty');
             return;
         };
-        try {
-            const res = await fetch('http://localhost:3030/registration',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: emailInput.current.value,
-                    password: passwordInput.current.value,
-                    nickName: nickNameInput.current.value,
-                    firstName: firstNameInput.current.value,
-                    lastNameInput: lastNameInput.current.value,
-                })
-            });
-
-            const data = await res.json();
-
-            if(!res.ok) {
-                let errors = [];
-                data.forEach(error => {
-                    errors = [...errors, error.msg];
-                    setErrMessage(errors);
-                })
-                throw new Error('Error');
-            }
-            localStorage.setItem('token', data);
-            navigate('/');
-        } catch(e) {
-            console.log(e);
+        const userData = {
+            email: emailInput.current.value,
+            password: passwordInput.current.value,
+            nickName: nickNameInput.current.value,
+            firstName: firstNameInput.current.value,
+            lastName: lastNameInput.current.value,
         }
-
+        dispatch(fetchMakeRegistration(userData));
+        setErrMessage(auth.message)
     }
-    const errors = errMessage.map(error => <p className={styles.error}>{error}</p>)
     return (
         <div className={styles.wrapper}>
             <h1>My-Store</h1>
@@ -104,7 +84,7 @@ const RegistrationPage = () => {
                 ref={lastNameInput}
                 />
                 <button>Register</button>
-                {errors}
+                <p className={styles.error}>{errMessage}</p>
             </form>
         </div>
     )

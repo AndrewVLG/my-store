@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import utilits from "./utilits/utilits.js";
 import regValidator from "./utilits/validator.js";
 
-const {getAll, getProductsbyCategory, regUser,chekAuth, authMe} = utilits();
+const {getAll, getProductsbyCategory, regUser,chekAuth, authMe, authorization} = utilits();
 const app = express();
 app.use(cors());
 app.use(express.json())
@@ -19,6 +19,8 @@ app.get('/products/:category', getProductsbyCategory);
 app.post('/registration', regValidator, regUser);
 
 app.get('/authme', chekAuth, authMe);
+
+app.post('/authorization', authorization);
 
 
 app.listen(3030, err => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchAuthMe } from '../../reduxStore/authSlice';
 import { fetchAllProducts } from '../../reduxStore/productsSlice';
 import CategoriesPanel from '../CategoriesPanel/CategoriesPanel';
 import Header from '../Header/Header';
@@ -8,14 +9,11 @@ import styles from './Store.module.css';
 const Store = () => {
     const [catFlag, setCatFlag] = useState(false);
     const dispatch = useDispatch();
+    console.log(localStorage.getItem('token'))
     useEffect(() => {
-        fetch('http://localhost:3030/authme', {
-            headers: {
-                authorization: localStorage.getItem('token')
-            }
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        if(localStorage.getItem('token')) {
+            dispatch(fetchAuthMe(localStorage.getItem('token')))
+        }
         dispatch(fetchAllProducts())
     }, [])
     
