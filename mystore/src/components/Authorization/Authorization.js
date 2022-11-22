@@ -1,13 +1,18 @@
-import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchMakeAuth } from '../../reduxStore/authSlice';
+import { clearError, fetchMakeAuth } from '../../reduxStore/authSlice';
 import styles from './Authorization.module.css';
 
 const Authorization = (props) => {
     const emailInput = useRef();
     const passwordInput = useRef();
     const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth)
+    console.log(auth.status)
+    useEffect(() => {
+        props.onShowAuthHandler();
+    }, [auth.status]);
     const makeAuth = (e) => {
         e.preventDefault();
         const userData = {
@@ -15,10 +20,14 @@ const Authorization = (props) => {
             password: passwordInput.current.value,
         }
         dispatch(fetchMakeAuth(userData));
-        props.onShowAuthHandler();
+        setTimeout(() => dispatch(clearError()), 2000);
+
     }
     return (
         <div className={styles.wrap}>
+            {auth.message !== null && <div>
+                <p className={styles['error-msg']}>{auth.message}</p>
+            </div>}
             <form onSubmit={makeAuth}>
             
                 <label>email</label>

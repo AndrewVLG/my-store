@@ -8,8 +8,9 @@ import ProductCard from '../ProductCard/ProductCard';
 import styles from './Store.module.css';
 const Store = () => {
     const [catFlag, setCatFlag] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
     const dispatch = useDispatch();
-    console.log(localStorage.getItem('token'))
+    console.log(searchValue)
     useEffect(() => {
         if(localStorage.getItem('token')) {
             dispatch(fetchAuthMe(localStorage.getItem('token')))
@@ -21,7 +22,7 @@ const Store = () => {
         setCatFlag(prev => !prev);
     }
     const {items, loading, message} = useSelector((state) => state.products)
-     const products = items.map(product => {
+     let products = items.map(product => {
         return <ProductCard 
         key={product._id}
         id={product.id}
@@ -31,10 +32,25 @@ const Store = () => {
         price={product.price}
         rating={product.rating}
         />
-     })
+     });
+     if(searchValue.length > 0) {
+        products = items.filter(product => product.title.toLowerCase().includes(searchValue)).map(product => {
+            return <ProductCard 
+            key={product._id}
+            id={product.id}
+            title={product.title}
+            description={product.description}
+            url={product.image}
+            price={product.price}
+            rating={product.rating}
+            />
+         });
+     }
+
+
     return(
         <div className={styles.body}>
-            <Header onShowCategoriesHandler={showCategories}/>
+            <Header onShowCategoriesHandler={showCategories} onSearchHandler={setSearchValue}/>
             <div className={styles.main}>
                 {catFlag && <CategoriesPanel />}
                 

@@ -63,7 +63,7 @@ export const fetchMakeRegistration = createAsyncThunk('auth/fetchMakeRegistratio
 
 const initialState = {
         status: false,
-        message: '',
+        message: null,
         nickName: '',
         firstName: '',
         lastName: '',
@@ -73,18 +73,22 @@ const initialState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        clearError: state => {
+            return {...state, message: null}
+        }
+    },
     extraReducers:{
         [fetchMakeAuth.pending]: (state) => {
             state.status = false;
-            state.message = 'loading';
+            state.message = null;
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
         },
         [fetchMakeAuth.fulfilled]: (state, action) => {
             state.status = true;
-            state.message = '';
+            state.message = null;
             state.nickName = action.payload.nickName;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
@@ -98,14 +102,14 @@ const authSlice = createSlice({
         },
         [fetchMakeRegistration.pending]: (state) => {
             state.status = false;
-            state.message = 'loading';
+            state.message = null;
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
         },
         [fetchMakeRegistration.fulfilled]: (state, action) => {
             state.status = true;
-            state.message = '';
+            state.message = null;
             state.nickName = action.payload.nickName;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
@@ -119,14 +123,14 @@ const authSlice = createSlice({
         },
         [fetchAuthMe.pending]: (state) => {
             state.status = false;
-            state.message = 'loading';
+            state.message = null;
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
         },
         [fetchAuthMe.fulfilled]: (state, action) => {
             state.status = true;
-            state.message = '';
+            state.message = null;
             state.nickName = action.payload.nickName;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
@@ -142,3 +146,4 @@ const authSlice = createSlice({
 });
 
  export const authReducer = authSlice.reducer;
+ export const {clearError} = authSlice.actions;
