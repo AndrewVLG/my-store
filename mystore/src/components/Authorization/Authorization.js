@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { clearError, fetchMakeAuth } from '../../reduxStore/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import { clearError, fetchAuthMe, fetchMakeAuth } from '../../reduxStore/authSlice';
 import styles from './Authorization.module.css';
 
 const Authorization = (props) => {
@@ -9,10 +9,11 @@ const Authorization = (props) => {
     const passwordInput = useRef();
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth)
-    console.log(auth.status)
     useEffect(() => {
         props.onShowAuthHandler();
     }, [auth.status]);
+    
+
     const makeAuth = (e) => {
         e.preventDefault();
         const userData = {
@@ -22,6 +23,27 @@ const Authorization = (props) => {
         dispatch(fetchMakeAuth(userData));
         setTimeout(() => dispatch(clearError()), 2000);
 
+    }
+
+    const makeLogOut = (action) => {
+        if(action === 'yes') {
+            localStorage.removeItem('token');
+            props.onShowAuthHandler();
+            dispatch(fetchAuthMe(localStorage.getItem('token')))
+
+        } else {
+            props.onShowAuthHandler();
+        }
+    }
+
+    if(auth.status) {
+        return (
+        <div className={styles.wrap}>
+                <h3>Do you want to log out?</h3>
+                <button className={styles.btn} onClick={makeLogOut}>No</button>
+                <button className={styles.btn} onClick={() => makeLogOut('yes')}>Yes</button>
+        </div>
+        )
     }
     return (
         <div className={styles.wrap}>
@@ -35,8 +57,7 @@ const Authorization = (props) => {
                 <label>password</label>
                 <input ref={passwordInput}/>
                 <Link to='/registration'>registration</Link>
-                <button>Log in</button>
-                
+                <button>Log in</button> 
             </form>
         </div>
     )

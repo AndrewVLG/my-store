@@ -54,7 +54,7 @@ const utilits = () => {
                     expiresIn: '1d'
                 }
             );
-            res.json(token);
+            res.json({token});
         } catch(e) {
             res.status(500).json({msg: 'A user with this nickname already exists'})
             console.log(e)
@@ -72,7 +72,8 @@ const utilits = () => {
             }
             next();
         } catch(e) {
-            res.json({msg: e.message});
+            console.log(e.message)
+            res.status(400).json({msg: e.message});
         }
     };
 
@@ -92,7 +93,7 @@ const utilits = () => {
 
     const authorization = async (req, res) => {
         try {
-            console.log(req);
+            
             const user = await User.findOne({email: req.body.email});
             if(!user) {
                 res.status(400).json({msg: 'Invalid email or password'});
@@ -120,10 +121,31 @@ const utilits = () => {
 
     }
 
+    const addToCart = async (req, res) => {
+        try {
+            const product = await Product.findById({_id: req.body.id});
+            console.log(product)
+            const user = await User.findById({_id: req.userId});
+            const updUser = await User.findByIdAndUpdate(
+                {
+                    _id: req.userId
+                },
+                {
+                    cart: [...user.cart, product]
+                }
+            );
+            res.json({msg: 'product has been added to the cart'})
+        } catch(e) {
+            console.log(e)
+        }
+        
+        
+    }
 
 
 
-    return {getAll, getProductsbyCategory, regUser, chekAuth, authMe, authorization};
+
+    return {getAll, getProductsbyCategory, regUser, chekAuth, authMe, authorization, addToCart};
 }
 
 export default utilits;

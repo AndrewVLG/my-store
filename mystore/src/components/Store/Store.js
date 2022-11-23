@@ -10,7 +10,6 @@ const Store = () => {
     const [catFlag, setCatFlag] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const dispatch = useDispatch();
-    console.log(searchValue)
     useEffect(() => {
         if(localStorage.getItem('token')) {
             dispatch(fetchAuthMe(localStorage.getItem('token')))
@@ -25,7 +24,7 @@ const Store = () => {
      let products = items.map(product => {
         return <ProductCard 
         key={product._id}
-        id={product.id}
+        id={product._id}
         title={product.title}
         description={product.description}
         url={product.image}
@@ -37,7 +36,7 @@ const Store = () => {
         products = items.filter(product => product.title.toLowerCase().includes(searchValue)).map(product => {
             return <ProductCard 
             key={product._id}
-            id={product.id}
+            id={product._id}
             title={product.title}
             description={product.description}
             url={product.image}

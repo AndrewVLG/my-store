@@ -16,7 +16,6 @@ export const fetchMakeAuth = createAsyncThunk('auth/fetchMakeAuth', async (userD
         localStorage.setItem('token', data.token);
         return data;
     } catch(e) {
-        console.log(e.message)
         return rejectWithValue(e.message);
     }
 });
@@ -49,11 +48,12 @@ export const fetchMakeRegistration = createAsyncThunk('auth/fetchMakeRegistratio
             body: JSON.stringify(userData),
         });
         const data = await res.json();
-        console.log(data);
+
         if(!res.ok) {
             throw new Error(data.msg);
         }
         localStorage.setItem('token', data.token);
+        console.log(data)
         return data;
     } catch(e) {
         console.log(e.message)

@@ -57,3 +57,13 @@
     width: 80%;
   
 }
+
+.msg {
+    position: absolute;
+    padding: 5px;
+    left: 586px;
+    top: 50px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid orange;
+}

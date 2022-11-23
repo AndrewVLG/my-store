@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './RegistrationPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMakeRegistration } from '../../reduxStore/authSlice';
@@ -17,6 +17,12 @@ const RegistrationPage = () => {
     const firstNameInput = useRef();
     const lastNameInput = useRef();
     const reg = /@/;
+    useEffect(() => {
+        if(auth.status === true) {
+            navigate('/');
+        }
+        
+    },[auth.status])
 
     const postUserData = async (e) => {
         e.preventDefault();
@@ -44,7 +50,7 @@ const RegistrationPage = () => {
             lastName: lastNameInput.current.value,
         }
         dispatch(fetchMakeRegistration(userData));
-        setErrMessage(auth.message)
+        setErrMessage(auth.message);
     }
     return (
         <div className={styles.wrapper}>
