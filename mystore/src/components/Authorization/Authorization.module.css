@@ -28,9 +28,9 @@
 }
 
 .btn {
+    cursor: pointer;
     height: 30%;
     width: 30%;
-
     margin-left: 10%;
     background-color: orange;
     border: 1px solid yellow;

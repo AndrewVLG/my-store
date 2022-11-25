@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cleareMessage, fetchAddToCart } from '../../reduxStore/cartSlice';
+import { fetchAddToCart, clearError } from '../../reduxStore/authSlice';
 import RatingBar from '../RatingBar/RatingBar';
 import styles from './ProductCard.module.css';
 
 const ProductCard = (props) => {
     const dispatch = useDispatch();
     const [posMessage, setPosMessage] = useState(0);
-    const cart = useSelector(state => state.cart);
+    const auth = useSelector(state => state.auth);
 
     const addToCart = (e) => {
         dispatch(fetchAddToCart(props.id));
@@ -16,7 +16,7 @@ const ProductCard = (props) => {
 
     const cleareMsg = () => {
         setTimeout(() => {
-            dispatch(cleareMessage());
+            dispatch(clearError());
             setPosMessage(0);
         }, 1000);
     };
@@ -35,7 +35,7 @@ const ProductCard = (props) => {
                         className={styles['add-btn']}
                         onMouseLeave={cleareMsg} 
                         onClick={addToCart}>add to cart</button>
-                        {posMessage !== 0 && cart.message !== null && <p style={{top: posMessage}} className={styles.msg}>{cart.message}</p>}
+                        {posMessage !== 0 && auth.message !== null && <p style={{top: posMessage}} className={styles.msg}>{auth.message}</p>}
                         <span className={styles.price}>{`price: ${props.price}$`}</span>
                     </div>
                 </div>

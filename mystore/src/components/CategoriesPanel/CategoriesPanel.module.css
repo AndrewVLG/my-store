@@ -35,3 +35,7 @@
     -moz-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
     box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
 }
+
+.cart-msg {
+    color: red;
+}

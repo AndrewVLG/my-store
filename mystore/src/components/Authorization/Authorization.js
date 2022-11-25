@@ -55,7 +55,7 @@ const Authorization = (props) => {
                 <label>email</label>
                 <input ref={emailInput}/>
                 <label>password</label>
-                <input ref={passwordInput}/>
+                <input type='password' ref={passwordInput}/>
                 <Link to='/registration'>registration</Link>
                 <div>
                     <button className={styles.btn} onClick={makeLogOut}>Cancel</button>

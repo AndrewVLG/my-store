@@ -124,7 +124,6 @@ const utilits = () => {
     const addToCart = async (req, res) => {
         try {
             const product = await Product.findById({_id: req.body.id});
-            console.log(product)
             const user = await User.findById({_id: req.userId});
             const updUser = await User.findByIdAndUpdate(
                 {
@@ -134,13 +133,17 @@ const utilits = () => {
                     cart: [...user.cart, product]
                 }
             );
-            res.json({msg: 'product has been added to the cart'})
+            const doc = await User.findById({_id: req.userId});
+            const {password, ...userData} = doc._doc;
+            res.json({msg: 'product has been added to the cart', ...userData})
         } catch(e) {
             console.log(e)
         }
         
         
     }
+
+
 
 
     return {getAll, getProductsbyCategory, regUser, chekAuth, authMe, authorization, addToCart};

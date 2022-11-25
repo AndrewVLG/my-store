@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cleareMessage, fetchAddToCart } from '../../reduxStore/cartSlice';
 import RatingBar from '../RatingBar/RatingBar';
 import styles from './CartItem.module.css';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CartItem = (props) => {
     const dispatch = useDispatch();
     const [posMessage, setPosMessage] = useState(0);
     const cart = useSelector(state => state.cart);
 
-    const addToCart = (e) => {
-        dispatch(fetchAddToCart(props.id));
-        setPosMessage(e.target.offsetTop);
-    }
 
-    const cleareMsg = () => {
-        setTimeout(() => {
-            dispatch(cleareMessage());
-            setPosMessage(0);
-        }, 1000);
-    };
 
     return (
         <div className={styles.wrap}>
+            <div className={styles.title}>
+                <h3>{props.title}</h3>
+                <FontAwesomeIcon icon={faXmark} pull='right' size='2x' cursor='pointer'/>
+            </div>
 
-            <h3>{props.title}</h3>
             <div className={styles.card}>
                 <div className={styles.container}>
                     <div className={styles['img-container']}>

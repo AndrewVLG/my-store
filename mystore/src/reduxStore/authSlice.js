@@ -61,6 +61,28 @@ export const fetchMakeRegistration = createAsyncThunk('auth/fetchMakeRegistratio
     }
 });
 
+export const fetchAddToCart = createAsyncThunk('auth/fetchAddToCart', async (productId, {rejectWithValue}) => {
+    try {
+        const res = await fetch('http://localhost:3030/cart/add', {
+            method: 'POST',
+            headers: {
+                authorization: localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id: productId})
+        });
+        const data = await res.json();
+        if(!res.ok) {
+            throw new Error(data.msg)
+        }
+        return data;
+    } catch(e) {
+        return rejectWithValue(e.message);
+    }
+});
+
+
+
 const initialState = {
         status: false,
         message: null,
@@ -152,6 +174,18 @@ const authSlice = createSlice({
             state.lastName = '';
             state.cart = [];
         },
+        [fetchAddToCart.fulfilled]: (state, action) => {
+            state.status = true;
+            state.message = action.payload.msg;
+            state.nickName = action.payload.nickName;
+            state.firstName = action.payload.firstName;
+            state.lastName = action.payload.lastName;
+            state.cart = action.payload.cart;
+        },
+        [fetchAddToCart.rejected]: (state, action) => {
+            state.message = action.payload;
+        }
+
     },
 });
 
