@@ -143,10 +143,37 @@ const utilits = () => {
         
     }
 
+    const removeFromCart = async (req, res) => {
+        try {
+
+            const product = await Product.findById({_id: req.body.id});
+            const user = await User.findById({_id: req.userId});
+            const index = user.cart.findIndex(item => item.title === product.title);
+            const arr = [...user.cart.slice(0, index), ...user.cart.slice(index + 1)];
+            const upd = await User.findByIdAndUpdate(
+                {
+                    _id: req.userId,
+                },
+                {
+                    cart: arr,
+                }
+            );
+
+            const updUser = await User.findById({_id: req.userId});
+            res.json(updUser);
+
+        } catch(e) {
+            console.log(e)
+            res.status(500).json({msg: 'Server error'});
+        }
+        
+        
+    }
 
 
 
-    return {getAll, getProductsbyCategory, regUser, chekAuth, authMe, authorization, addToCart};
+
+    return {getAll, getProductsbyCategory, regUser, chekAuth, authMe, authorization, addToCart, removeFromCart};
 }
 
 export default utilits;

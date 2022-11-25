@@ -64,7 +64,7 @@ export const fetchMakeRegistration = createAsyncThunk('auth/fetchMakeRegistratio
 export const fetchAddToCart = createAsyncThunk('auth/fetchAddToCart', async (productId, {rejectWithValue}) => {
     try {
         const res = await fetch('http://localhost:3030/cart/add', {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 authorization: localStorage.getItem('token'),
                 'Content-Type': 'application/json',
@@ -78,6 +78,26 @@ export const fetchAddToCart = createAsyncThunk('auth/fetchAddToCart', async (pro
         return data;
     } catch(e) {
         return rejectWithValue(e.message);
+    }
+});
+
+export const fetchRemoveFromCart = createAsyncThunk('auth/fetcRemoveFromCart', async (productId, {rejectWithValue}) => {
+    try {
+        const res = await fetch('http://localhost:3030/cart/remove', {
+            method: 'PATCH',
+            headers: {
+                authorization: localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id: productId})
+        });
+        const data = await res.json();
+        if(!res.ok) {
+            throw new Error(data.msg)
+        }
+        return data;
+    } catch(e) {
+        return rejectWithValue({msg: e.message});
     }
 });
 
@@ -184,6 +204,12 @@ const authSlice = createSlice({
         },
         [fetchAddToCart.rejected]: (state, action) => {
             state.message = action.payload;
+        },
+        [fetchRemoveFromCart.fulfilled]: (state, action) => {
+            state.cart = action.payload.cart;
+        },
+        [fetchRemoveFromCart.rejected]: (state, action) => {
+            state.message = action.payload.msg;
         }
 
     },

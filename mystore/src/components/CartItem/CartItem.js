@@ -4,19 +4,22 @@ import RatingBar from '../RatingBar/RatingBar';
 import styles from './CartItem.module.css';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fetchRemoveFromCart } from '../../reduxStore/authSlice';
 
 const CartItem = (props) => {
     const dispatch = useDispatch();
     const [posMessage, setPosMessage] = useState(0);
     const cart = useSelector(state => state.cart);
-
+    const removeProduct = (id) => {
+        dispatch(fetchRemoveFromCart(id))
+    }
 
 
     return (
         <div className={styles.wrap}>
             <div className={styles.title}>
                 <h3>{props.title}</h3>
-                <FontAwesomeIcon icon={faXmark} pull='right' size='2x' cursor='pointer'/>
+                <FontAwesomeIcon onClick={() => removeProduct(props.id)} icon={faXmark} pull='right' size='2x' cursor='pointer'/>
             </div>
 
             <div className={styles.card}>

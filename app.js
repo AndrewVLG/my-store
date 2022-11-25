@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import utilits from "./utilits/utilits.js";
 import regValidator from "./utilits/validator.js";
 
-const {getAll, getProductsbyCategory, regUser,chekAuth, authMe, authorization, addToCart, delItem} = utilits();
+const {getAll, getProductsbyCategory, regUser,chekAuth, authMe, authorization, addToCart, removeFromCart} = utilits();
 const app = express();
 app.use(cors());
 app.use(express.json())
@@ -22,7 +22,9 @@ app.get('/authme', chekAuth, authMe);
 
 app.post('/authorization', authorization);
 
-app.post('/cart/add', chekAuth, addToCart);
+app.patch('/cart/add', chekAuth, addToCart);
+
+app.patch('/cart/remove', chekAuth, removeFromCart);
 
 
 
