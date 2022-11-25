@@ -143,8 +143,6 @@ const utilits = () => {
     }
 
 
-
-
     return {getAll, getProductsbyCategory, regUser, chekAuth, authMe, authorization, addToCart};
 }
 

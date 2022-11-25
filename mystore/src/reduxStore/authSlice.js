@@ -67,6 +67,7 @@ const initialState = {
         nickName: '',
         firstName: '',
         lastName: '',
+        cart: [],
 
 };
 
@@ -85,6 +86,7 @@ const authSlice = createSlice({
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
+            state.cart = [];
         },
         [fetchMakeAuth.fulfilled]: (state, action) => {
             state.status = true;
@@ -92,6 +94,7 @@ const authSlice = createSlice({
             state.nickName = action.payload.nickName;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
+            state.cart = action.payload.cart;
         },
         [fetchMakeAuth.rejected]: (state, action) => {
             state.status = false;
@@ -99,6 +102,7 @@ const authSlice = createSlice({
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
+            state.cart = [];
         },
         [fetchMakeRegistration.pending]: (state) => {
             state.status = false;
@@ -106,6 +110,7 @@ const authSlice = createSlice({
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
+            state.cart = [];
         },
         [fetchMakeRegistration.fulfilled]: (state, action) => {
             state.status = true;
@@ -113,6 +118,7 @@ const authSlice = createSlice({
             state.nickName = action.payload.nickName;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
+            state.cart = [];
         },
         [fetchMakeRegistration.rejected]: (state, action) => {
             state.status = false;
@@ -120,6 +126,7 @@ const authSlice = createSlice({
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
+            state.cart = [];
         },
         [fetchAuthMe.pending]: (state) => {
             state.status = false;
@@ -127,6 +134,7 @@ const authSlice = createSlice({
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
+            state.cart = [];
         },
         [fetchAuthMe.fulfilled]: (state, action) => {
             state.status = true;
@@ -134,6 +142,7 @@ const authSlice = createSlice({
             state.nickName = action.payload.nickName;
             state.firstName = action.payload.firstName;
             state.lastName = action.payload.lastName;
+            state.cart = action.payload.cart;
         },
         [fetchAuthMe.rejected]: (state, action) => {
             state.status = false;
@@ -141,6 +150,7 @@ const authSlice = createSlice({
             state.nickName = '';
             state.firstName = '';
             state.lastName = '';
+            state.cart = [];
         },
     },
 });

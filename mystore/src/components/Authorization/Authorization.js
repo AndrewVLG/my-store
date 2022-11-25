@@ -57,7 +57,11 @@ const Authorization = (props) => {
                 <label>password</label>
                 <input ref={passwordInput}/>
                 <Link to='/registration'>registration</Link>
-                <button>Log in</button> 
+                <div>
+                    <button className={styles.btn} onClick={makeLogOut}>Cancel</button>
+                    <button className={styles.btn}>Log in</button> 
+                </div>
+
             </form>
         </div>
     )

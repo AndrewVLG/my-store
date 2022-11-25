@@ -10,6 +10,7 @@ const Store = () => {
     const [catFlag, setCatFlag] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const dispatch = useDispatch();
+    const {items, loading, message} = useSelector((state) => state.products);
     useEffect(() => {
         if(localStorage.getItem('token')) {
             dispatch(fetchAuthMe(localStorage.getItem('token')))
@@ -20,7 +21,7 @@ const Store = () => {
     const showCategories = () => {
         setCatFlag(prev => !prev);
     }
-    const {items, loading, message} = useSelector((state) => state.products)
+
      let products = items.map(product => {
         return <ProductCard 
         key={product._id}

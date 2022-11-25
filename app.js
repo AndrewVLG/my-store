@@ -22,7 +22,8 @@ app.get('/authme', chekAuth, authMe);
 
 app.post('/authorization', authorization);
 
-app.post('/cart/add', chekAuth, addToCart)
+app.post('/cart/add', chekAuth, addToCart);
+
 
 
 app.listen(3030, err => {
