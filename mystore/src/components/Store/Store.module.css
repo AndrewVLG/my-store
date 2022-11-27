@@ -1,5 +1,5 @@
 .body {
-overflow: hidden;
+
     min-height: 100vh;
     max-height: fit-content;
     width: 100vw;
@@ -26,4 +26,9 @@ overflow: hidden;
 
     margin: 2px;
 
+}
+@media (max-width: 600px) {
+    .main {
+        flex-direction: column;
+    }
 }

@@ -65,3 +65,31 @@
     text-align: center;
     color: white;
 }
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column-reverse;
+        justify-content: stretch;
+        
+    }
+    .btn-cat {
+        height: 50%;
+        width: 100%;
+        font-size: 15px;
+    }
+    .btn-container {
+        height: 50%;
+        width: 100%;
+        
+    }
+    .logo-container {
+        display: none;
+    }
+    .search-container {
+        width: 100%;
+    }
+    .search-container label {
+        font-size: 15px;
+        margin: 0;
+    }
+}
