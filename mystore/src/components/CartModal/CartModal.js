@@ -6,7 +6,6 @@ const CartModal = (props) => {
     const auth = useSelector(state => state.auth);
 
     const totalPrice = auth.cart.reduce((sum, current) => sum + current.price, 0).toFixed(2);
-    console.log(totalPrice)
     const cartItems = auth.cart.map(product => {
         return <CartItem 
         key={product._id}
