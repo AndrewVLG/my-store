@@ -17,11 +17,15 @@
 .products-container {
     flex: 1;
     padding: 5px;
-    background-color: white;
+    background-color: #F7F7F7;
     border: 1px solid yellow;
     border-radius: 10px;
+    min-height: 90vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
     height: fit-content;
 
     margin: 2px;

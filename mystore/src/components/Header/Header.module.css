@@ -1,95 +1,43 @@
 .header {
     display: flex;
     align-items: stretch;
-    height: 14vh;
+    justify-content: center;
+    height: 8vh;
     width: auto;
     background-color: orange;
-    -webkit-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-    -moz-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-    box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-}
 
-.btn-container {
+}
+.nav-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 150px;
     width: 20%;
+    
 }
-.btn-cat {
-    cursor: pointer;
-    width: 80%;
-    height: 35%;
-    background-color: orange;
-    border: 1px solid yellow;
-    border-radius: 5px;
-    font-size: 23px;
+.label {
+    font-size: 1.7vw;
     color: white;
-    -webkit-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-    -moz-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-    box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
 }
-
-
 .search-container {
-    margin-left: 3px;
-    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50%;
- 
-}
-.search-container label {
-    font-size: 23px;
-    margin-left: 12%;
-    color: white;
-}
-.search-container input {
-    margin-top: 5%;
-    width: 70%;
-    border: 3px solid rgba(249, 198, 0, 0.6);
-    border-radius: 3px;
-}
-
-.logo-container {
-    margin-left: 3px;
-    height: auto;
-    width: 30%;
 
 }
-.logo-container h1 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 50px;
-    word-spacing: 2px;
-    font-weight: 700;
-    text-transform: capitalize;
-    text-align: center;
-    color: white;
-}
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    width: 10%;
 
+}
 @media (max-width: 600px) {
     .header {
         flex-direction: column-reverse;
         justify-content: stretch;
         
     }
-    .btn-cat {
-        height: 50%;
-        width: 100%;
-        font-size: 15px;
-    }
-    .btn-container {
-        height: 50%;
-        width: 100%;
-        
-    }
-    .logo-container {
-        display: none;
-    }
-    .search-container {
-        width: 100%;
-    }
-    .search-container label {
-        font-size: 15px;
-        margin: 0;
-    }
+
 }

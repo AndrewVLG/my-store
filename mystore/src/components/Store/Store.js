@@ -18,10 +18,6 @@ const Store = () => {
         dispatch(fetchAllProducts())
     }, [])
     
-    const showCategories = () => {
-        setCatFlag(prev => !prev);
-    }
-
      let products = items.map(product => {
         return <ProductCard 
         key={product._id}
@@ -50,7 +46,7 @@ const Store = () => {
 
     return(
         <div className={styles.body}>
-            <Header onShowCategoriesHandler={showCategories} onSearchHandler={setSearchValue}/>
+            <Header onShowCategoriesHandler={() => setCatFlag(prev => !prev)} onSearchHandler={setSearchValue}/>
             <div className={styles.main}>
                 {catFlag && <CategoriesPanel />}
                 

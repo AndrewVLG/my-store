@@ -5,6 +5,7 @@ import styles from './CartItem.module.css';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchRemoveFromCart } from '../../reduxStore/authSlice';
+import { Button } from '@mui/material';
 
 const CartItem = (props) => {
     const dispatch = useDispatch();
@@ -16,30 +17,26 @@ const CartItem = (props) => {
 
 
     return (
-        <div className={styles.wrap}>
-            <div className={styles.title}>
-                <h3>{props.title}</h3>
-                <FontAwesomeIcon onClick={() => removeProduct(props.id)} icon={faXmark} pull='right' size='2x' cursor='pointer'/>
-            </div>
-
+        <React.Fragment>
             <div className={styles.card}>
-                <div className={styles.container}>
-                    <div className={styles['img-container']}>
-                        <img src={props.url}/>
-                    </div>
-                    <div className={styles['price-container']}>
-
-                        {posMessage !== 0 && cart.message !== null && <p style={{top: posMessage}} className={styles.msg}>{cart.message}</p>}
-                        <span className={styles.price}>{`price: ${props.price}$`}</span>
-                    </div>
+                <div className={styles['header-wrap']}>
+                    <h3>{props.title}</h3>
                 </div>
-
-                <div className={styles.description}>
+                <div className={styles['img-wrap']}>
+                    <img className={styles.img} src={props.url} />
+                </div>
+                <div className={styles['price-wrap']}>
+                    <p>{`${props.price}$`}</p>
+                </div>
+                <div className={styles['description-wrap']}>
                     <p>{props.description}</p>
+                </div>
+                <div className={styles.actions}>
                     <RatingBar rating={props.rating}/>
+
                 </div>
             </div>
-        </div>
+        </React.Fragment>
 
     )
 }
