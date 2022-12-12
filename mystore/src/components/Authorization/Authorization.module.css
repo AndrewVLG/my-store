@@ -1,43 +1,35 @@
-
+.authorization {
+    flex: 1;
+    padding: 5px;
+    background-color: #F7F7F7;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin: 2px;
+}
 .wrap {
-    padding: 5px;
-    width: 20%; 
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    height: 70vh;
+    width: 50%;
+    border-radius: 2%;
     background-color: orange;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
-.wrap h3 {
-    color: white;
-    text-align: center;
+.title {
+    margin-top: 10rem;
 }
-
-.wrap input {
-    border: 3px solid yellow;
-}
-
 .wrap label {
-    color: white;
+    display: block;
 }
-.error-msg {
-    position: absolute;
-    padding: 5px;
-    left: 360px;
-    top: 50px;
-    height: 20px;
-    background-color: rgb(255, 183, 183);
-    border: 3px solid rgb(233, 80, 80);
+.email-container {
+    margin-top: 5rem;
 }
-
-.btn {
-    cursor: pointer;
-    height: 30%;
-    width: 30%;
-    margin-left: 10%;
-    background-color: orange;
-    border: 1px solid yellow;
-    border-radius: 5px;
-    font-size: 20px;
-    color: white;
-    -webkit-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-    -moz-box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
-    box-shadow: 0px -17px 10px -11px rgba(249, 198, 0, 0.6) inset;
+.btn-container {
+    margin: 1rem;
 }

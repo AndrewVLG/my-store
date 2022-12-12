@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RatingBar from '../RatingBar/RatingBar';
 import styles from './CartItem.module.css';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchRemoveFromCart } from '../../reduxStore/authSlice';
 import { Button } from '@mui/material';
 
@@ -33,6 +31,7 @@ const CartItem = (props) => {
                 </div>
                 <div className={styles.actions}>
                     <RatingBar rating={props.rating}/>
+                    <Button onClick={() => removeProduct(props.id)}>remove</Button>
 
                 </div>
             </div>

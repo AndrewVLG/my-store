@@ -31,7 +31,8 @@
     font-size: 20px;
 }
 .description-wrap {
-    font-size: 14px;
+    overflow: scroll;
+    font-size: 90%;
     height: 30%;
     width: 90%;
 }

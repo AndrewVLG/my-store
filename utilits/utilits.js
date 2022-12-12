@@ -72,7 +72,6 @@ const utilits = () => {
             }
             next();
         } catch(e) {
-            console.log(e.message)
             res.status(400).json({msg: e.message});
         }
     };

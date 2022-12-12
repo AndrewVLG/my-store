@@ -1,8 +1,7 @@
 import React from 'react';
-import styles from './Cart.module.css';
 import CartItem from '../CartItem/CartItem';
 import { useSelector } from 'react-redux';
-import { Button, Drawer, Box } from '@mui/material';
+import { Drawer, Box } from '@mui/material';
 const Cart = (props) => {
     const auth = useSelector(state => state.auth);
     const totalPrice = auth.cart.reduce((sum, current) => sum + current.price, 0).toFixed(2);
@@ -17,6 +16,7 @@ const Cart = (props) => {
             rating={product.rating}
             />
     })
+    console.log(totalPrice)
     return (
         <Drawer 
             onClose={props.onCartFlagHandler}
@@ -24,14 +24,25 @@ const Cart = (props) => {
             open={props.cartFlag}
         >
             <Box sx={{
-                height: 'auto', 
+                height: '80%', 
                 width: '30vw', 
                 backgroundColor: '#5DCFC2',
                 display: 'flex',
-                flexWrap: 'wrap'
-            }}>
+                flexWrap: 'wrap',
+                overflow: 'scroll'
+            }}> 
                 {cartItems}
             </Box> 
+            <Box sx={{
+                height: '20%', 
+                width: '30vw', 
+                backgroundColor: '#5DCFC2',
+                display: 'flex',
+            }}> 
+
+                <h2>{`Total price: ${totalPrice}$`}</h2>
+            </Box>
+           
         </Drawer>
     )
 }

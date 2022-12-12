@@ -16,8 +16,6 @@ const ProductCard = (props) => {
         setTimeout(() => dispatch(clearError()), 2300)
     }
  
-
-
     return (
         <React.Fragment>
             <div className={styles.card}>
@@ -48,7 +46,7 @@ const ProductCard = (props) => {
             autoHideDuration={2000}
             onClose={() => setSnackFlag(false)}
         >
-            <Alert severity='error' variant='filled'>{auth.message}</Alert>
+            {auth.status ? <Alert severity='success' variant='filled'>{auth.message}</Alert> : <Alert severity='error' variant='filled'>{auth.message}</Alert>}
         </Snackbar>
         </React.Fragment>
     )

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { fetchAllProducts, fetchProductsByCategory } from "../../reduxStore/productsSlice";
+import { Button } from "@mui/material";
 import { CheckroomOutlined, ComputerOutlined, DiamondOutlined, SummarizeOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const ButtonFromPanel = (props) => {
     const [focus, setFocus] = useState(false);
+    const nav = useNavigate();
     const dispatch = useDispatch();
     const icon = (props.title === 'All' && <SummarizeOutlined />)
         || (props.title === 'Electronics' && <ComputerOutlined />)
@@ -32,6 +34,7 @@ const ButtonFromPanel = (props) => {
                     dispatch(fetchAllProducts());
                     setFocus(true)} 
                 : () => {
+                    nav(props.title.toLowerCase())
                     dispatch(fetchProductsByCategory(props.title.toLowerCase()));
                     setFocus(true);
                 }} 

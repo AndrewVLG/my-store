@@ -29,12 +29,14 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async (token, {r
             }
         });
         const data = await res.json();
+
         if(!res.ok) {
+            console.log(data.msg)
             throw new Error(data.msg);
         }
         return data;
     } catch(e) {
-        rejectWithValue(e.message);
+       return rejectWithValue(e.message);
     }
 })
 
