@@ -7,15 +7,15 @@ import styles from './ProductsContainerByCategory.module.css';
 
 const ProductsContainerByCategory = () => {
     const {category} = useParams();
-
+    console.log(category)
     const {searchValue} = useOutletContext();
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(fetchProductsByCategory(category.toLocaleLowerCase()))
-    }, [])
+        dispatch(fetchProductsByCategory(category));
+    }, [category]);
+
     const products = useSelector(state => state.products);
-
-
     let elements = products.items.map(product => {
         return <ProductCard 
         key={product._id}

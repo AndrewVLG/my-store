@@ -36,7 +36,6 @@ const ButtonFromPanel = (props) => {
                     setFocus(true)} 
                 : () => {
                     nav(`categories/${props.title.toLowerCase()}`);
-                    dispatch(fetchProductsByCategory(category.toLowerCase()));
                     setFocus(true);
                 }} 
                 color="green"
