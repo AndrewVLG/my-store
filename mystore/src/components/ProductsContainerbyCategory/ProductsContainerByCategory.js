@@ -1,22 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation, useOutletContext, useParams } from 'react-router-dom';
+import {  useOutletContext, useParams } from 'react-router-dom';
 import { fetchAllProducts, fetchProductsByCategory } from '../../reduxStore/productsSlice';
 import ProductCard from '../ProductCard/ProductCard';
-import styles from './ProductsContainer.module.css';
+import styles from './ProductsContainerByCategory.module.css';
 
-const ProductsContainer = () => {
+const ProductsContainerByCategory = () => {
+    const {category} = useParams();
 
     const {searchValue} = useOutletContext();
     const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(fetchAllProducts());
-    }, []);
-
+        dispatch(fetchProductsByCategory(category.toLocaleLowerCase()))
+    }, [])
     const products = useSelector(state => state.products);
-    const navigate = useNavigation();
-    console.log(navigate);
+
+
     let elements = products.items.map(product => {
         return <ProductCard 
         key={product._id}
@@ -47,4 +46,4 @@ const ProductsContainer = () => {
         </div>
     )
 }
-export default ProductsContainer;
+export default ProductsContainerByCategory;

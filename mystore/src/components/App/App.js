@@ -8,6 +8,8 @@ import reduxStore from '../../reduxStore/reduxStore';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import ProductsContainer from '../ProductsContainer/ProductsContainer';
 import Authorization from '../Authorization/Authorization';
+import ProductsContainerByCategory from '../ProductsContainerbyCategory/ProductsContainerByCategory';
+
 
 const theme = createTheme({
     palette: {
@@ -35,10 +37,12 @@ const theme = createTheme({
 const rout = createBrowserRouter(createRoutesFromElements(
     <>
         <Route path='/' element={<Store />} errorElement={<ErrorPage />}>
-            <Route path=':category' element={<ProductsContainer />}/>
+            <Route index element={<ProductsContainer />}/>
+            <Route path='/categories/:category' element={<ProductsContainerByCategory />}/>
             <Route path='authorization' element={<Authorization />}/>
         </Route>
         <Route path='/registration' element={<RegistrationPage />} />
+
 
         
     </>

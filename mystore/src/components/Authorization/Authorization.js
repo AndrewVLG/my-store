@@ -1,19 +1,19 @@
-import { Alert, Box, Button, Drawer, Modal, TextField } from '@mui/material';
-import { height } from '@mui/system';
-import React, { useEffect, useRef, useState } from 'react';
+import {  Button, TextField } from '@mui/material';
+
+import React, {  useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Link, useNavigate } from 'react-router-dom';
-import { clearError, fetchAuthMe, fetchMakeAuth } from '../../reduxStore/authSlice';
+import {  Link, useNavigate } from 'react-router-dom';
+import { fetchMakeAuth } from '../../reduxStore/authSlice';
 import styles from './Authorization.module.css';
 
 const Authorization = (props) => {
+
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth)
     const nav = useNavigate();
     const makeAuth = (email, password) => {
-
         const userData = {
             email,
             password,
@@ -23,6 +23,7 @@ const Authorization = (props) => {
     }
 
 
+ 
     return (
         <div className={styles.authorization}>
             <div className={styles.wrap}>

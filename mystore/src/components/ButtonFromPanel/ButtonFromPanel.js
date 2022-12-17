@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchAllProducts, fetchProductsByCategory } from "../../reduxStore/productsSlice";
+import { fetchProductsByCategory } from "../../reduxStore/productsSlice";
 import { Button } from "@mui/material";
 import { CheckroomOutlined, ComputerOutlined, DiamondOutlined, SummarizeOutlined } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ButtonFromPanel = (props) => {
+    const {category} = useParams();
     const [focus, setFocus] = useState(false);
     const nav = useNavigate();
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const ButtonFromPanel = (props) => {
         || (props.title === "Men's clothing" && <CheckroomOutlined />)
         || (props.title === "Women's clothing" && <CheckroomOutlined />)
         || (props.title === "Jewellery" && <DiamondOutlined />);
-        
+    
 
     return (
         <React.Fragment>
@@ -31,11 +32,11 @@ const ButtonFromPanel = (props) => {
                 startIcon={icon}
                 onClick={props.title === 'All' 
                 ? () => {
-                    dispatch(fetchAllProducts());
+                    nav('/');
                     setFocus(true)} 
                 : () => {
-                    nav(props.title.toLowerCase())
-                    dispatch(fetchProductsByCategory(props.title.toLowerCase()));
+                    nav(`categories/${props.title.toLowerCase()}`);
+                    dispatch(fetchProductsByCategory(category.toLowerCase()));
                     setFocus(true);
                 }} 
                 color="green"
